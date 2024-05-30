@@ -23,17 +23,7 @@ const Dashboard = () => {
         />
       </div>
 
-      <div className="border h-auto mt-5 ">
-        {expenses.map((expense: any, key: number) => (
-          <div
-            key={key}
-            className="border h-[3rem] items-center px-2 flex justify-between"
-          >
-            <p className="font-semibold text-[1rem]">{expense.expenseTitle}</p>
-            <p>KSH {Number(expense.expenseAmount).toLocaleString()}</p>
-          </div>
-        ))}
-      </div>
+      <div className="border h-auto mt-5 ">expenses here...</div>
     </div>
   );
 };

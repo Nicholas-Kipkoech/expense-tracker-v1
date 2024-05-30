@@ -17,14 +17,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       setLoading(true);
-      const res = await axios.post("/api/login", {
-        email,
-        password,
-      });
-      if (res.data.success === true) {
-        localStorage.setItem("access_token", res.data.accessToken);
-        router.push("/dashboard");
-      }
+      router.push("/dashboard");
       setLoading(false);
     } catch (error) {
       console.error(error);
