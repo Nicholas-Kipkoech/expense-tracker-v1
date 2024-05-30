@@ -6,6 +6,7 @@ export interface IUser extends Document {
   phoneNumber: string;
   email: string;
   password: string;
+  createdAt: Date;
 }
 
 const userSchema: Schema<IUser> = new mongoose.Schema({
@@ -14,6 +15,7 @@ const userSchema: Schema<IUser> = new mongoose.Schema({
   phoneNumber: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now() },
 });
 
 const User: Model<IUser> =

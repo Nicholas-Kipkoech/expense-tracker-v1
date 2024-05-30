@@ -1,8 +1,36 @@
+"use client";
 import CustomButton from "@/app/helpers/CustomButton";
 import CustomInput from "@/app/helpers/CustomInput";
-import React from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+  /**
+   * This is function for triggering login. Once the login is success the user is redirected to dashboard
+   */
+  const handleLogin = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.post("/api/login", {
+        email,
+        password,
+      });
+      if (res.data.success === true) {
+        localStorage.setItem("access_token", res.data.accessToken);
+        router.push("/dashboard");
+      }
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  };
   return (
     <div className="w-full m-2">
       <p className="text-[1.8rem] font-bold justify-center flex">
@@ -15,15 +43,18 @@ const Login = () => {
         <CustomInput
           name={"Email"}
           className={"h-[3rem] border w-full rounded-md"}
-          value={""}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <CustomInput
           name={"Password"}
           className={"h-[3rem] border w-full rounded-md"}
-          value={""}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <CustomButton
-          name={"Login"}
+          name={loading ? "Loggin in.." : "Login"}
+          onClick={handleLogin}
           className="w-full border h-[3rem] mt-5 rounded-md bg-slate-800 text-white"
         />
 
