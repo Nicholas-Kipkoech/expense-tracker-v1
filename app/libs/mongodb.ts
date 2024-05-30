@@ -13,5 +13,7 @@ export const connectToDatabase = async () => {
     console.log("connected to database...");
   } catch (error) {
     console.error(error);
+  } finally {
+    mongoose.disconnect();
   }
 };
