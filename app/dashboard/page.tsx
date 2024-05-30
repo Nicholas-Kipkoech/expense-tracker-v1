@@ -24,11 +24,20 @@ const Dashboard = () => {
       </div>
 
       <div className="border h-auto mt-5 ">
-        <div className="flex justify-between px-2 items-center">
-          <p className="text-[1.3rem] font-semibold ">Sugar</p>
-          <p>KSH 200</p>
-          <p>{new Date().toDateString()}</p>
-        </div>
+        {expenses.map((expense: any, key: number) => (
+          <div
+            className="flex justify-between px-2 items-center border-2 h-[3rem]"
+            key={key}
+          >
+            <p className="text-[14px]">{expense.expenseTitle}</p>
+            <p className="text-[12px]">
+              KSH {expense.expenseAmount.toLocaleString()}
+            </p>
+            <p className="text-[12px]">
+              {new Date(expense.createdAt).toLocaleString()}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );

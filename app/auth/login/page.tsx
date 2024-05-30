@@ -1,9 +1,13 @@
 "use client";
+
 import CustomButton from "@/app/helpers/CustomButton";
 import CustomInput from "@/app/helpers/CustomInput";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { config } from "dotenv";
+import { API_URL } from "@/app/config/config";
+config();
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,8 +21,15 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       setLoading(true);
-      router.push("/dashboard");
-      setLoading(false);
+      const res = await axios.post(`${API_URL}/api/login`, {
+        email,
+        password,
+      });
+      if (res.data.success === true) {
+        localStorage.setItem("access_token", res.data.accessToken);
+        setLoading(false);
+        router.push("/dashboard");
+      }
     } catch (error) {
       console.error(error);
       setLoading(false);
