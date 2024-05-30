@@ -1,8 +1,12 @@
-import { connectToDatabase } from "@/app/lib/moongose";
-import { NextResponse } from "next/server";
-
-export async function POST() {}
+import User from "@/app/models/user";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
-  return NextResponse.json({ message: "hello" });
+  try {
+    const users = await User.find({});
+    return NextResponse.json({ users });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: error });
+  }
 }

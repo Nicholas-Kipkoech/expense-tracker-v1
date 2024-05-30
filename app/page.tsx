@@ -1,10 +1,11 @@
-import { connectToDatabase } from "./lib/moongose";
+import Login from "./auth/login/page";
+import { connectToDatabase } from "./libs/mongodb";
 
 export default async function Home() {
   await connectToDatabase();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      hello world
+    <main className="flex justify-center items-center h-screen">
+      <Login />
     </main>
   );
 }

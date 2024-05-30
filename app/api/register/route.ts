@@ -1,8 +1,8 @@
-import User from "@/app/models/user";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import User from "@/app/models/user"; // Assuming correct import path
 
-type User = {
+type UserInput = {
   firstName: string;
   lastName: string;
   phoneNumber: string;
@@ -10,25 +10,34 @@ type User = {
   password: string;
 };
 
-export async function POST(req: User, res: NextResponse) {
+export async function POST(req: NextRequest, res: NextResponse) {
   try {
-    const { firstName, lastName, email, password, phoneNumber } = req;
+    // Parse request body
+    const data: UserInput = await req.json();
 
-    const existingUser = await User.findOne({ email: email });
+    // Check if data is null
+    if (!data) {
+      return NextResponse.json({ message: "Invalid request body" });
+    }
+
+    const existingUser = await User.findOne({ email: data.email });
     if (existingUser) {
       return NextResponse.json({
         message: `${existingUser.email} already exists!!`,
       });
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const hashedPassword = await bcrypt.hash(data.password, 10);
     const newUser = new User({
-      firstName,
-      lastName,
-      email,
-      hashedPassword,
-      phoneNumber,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: hashedPassword,
+      phoneNumber: data.phoneNumber,
     });
+
     await newUser.save();
+
     return NextResponse.json({
       success: true,
       message: "User created successfully",
