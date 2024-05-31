@@ -25,7 +25,7 @@ export const ContextProvider = ({
 
   useEffect(() => {
     async function getExpenses() {
-      if (user) {
+      if (user && user._id) {
         const res = await axios.get(
           `${API_URL}/api/expenses?userId=${user._id}`
         );
@@ -34,8 +34,6 @@ export const ContextProvider = ({
     }
     getExpenses();
   }, [user]);
-
-  console.log(expenses);
 
   return (
     <ExpenseContext.Provider value={{ user, expenses }}>
