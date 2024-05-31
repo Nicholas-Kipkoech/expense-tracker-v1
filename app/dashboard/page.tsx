@@ -29,7 +29,7 @@ const Dashboard = () => {
             className="flex justify-between px-2 items-center border-2 h-[3rem]"
             key={key}
           >
-            <p className="text-[14px]">{expense.expenseTitle}</p>
+            <p className="text-[14px]">{expense.expenseName}</p>
             <p className="text-[12px]">
               KSH {expense.expenseAmount.toLocaleString()}
             </p>
