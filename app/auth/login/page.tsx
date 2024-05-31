@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { config } from "dotenv";
 import { API_URL } from "@/app/config/config";
-import connectToDatabase from "@/app/lib/moongose";
 
 config();
 
@@ -21,7 +20,6 @@ const Login = () => {
    * This is function for triggering login. Once the login is success the user is redirected to dashboard
    */
   const handleLogin = async () => {
-    await connectToDatabase();
     try {
       setLoading(true);
       const res = await axios.post(`${API_URL}/api/login`, {
