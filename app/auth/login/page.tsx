@@ -23,8 +23,8 @@ const Login = () => {
     try {
       setLoading(true);
       const res = await axios.post(`${API_URL}/api/user/login`, {
-        email,
-        password,
+        email: email.toLowerCase(),
+        password: password,
       });
       if (res.data.success === true) {
         localStorage.setItem("access_token", res.data.accessToken);
