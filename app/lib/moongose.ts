@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const urlString: string | any = process.env.MONGO_URL;
+const urlString: string | any =
+  "mongodb+srv://Nickey:Nickey@cluster0.i0gut.mongodb.net/expense-tracker?retryWrites=true&w=majority&appName=Cluster0";
 
 const connectToDatabase = async () => {
   // Check if mongoose connection is already open
