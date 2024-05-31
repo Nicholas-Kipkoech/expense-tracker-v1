@@ -9,3 +9,7 @@ export const fetchExpenses = async () => {
   const res = await PrivateAxiosUtility.get(`/api/expenses/fetch`);
   return res.data;
 };
+export const fetchEarning = async () => {
+  const res = await PrivateAxiosUtility.get(`/api/earnings/fetch`);
+  return res.data;
+};

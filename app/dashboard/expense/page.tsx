@@ -8,24 +8,29 @@ import React, { useContext, useState } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 
 const AddExpense = () => {
-  const { getExpenses }: any = useContext(ExpenseContext);
+  const { getExpenses, getEarnings }: any = useContext(ExpenseContext);
   const router = useRouter();
   const [expense, setExpense] = useState({
     expenseName: "",
     expenseAmount: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleAddExpense = async () => {
     try {
+      setLoading(true);
       const res = await addExpense({
         expenseName: expense.expenseName,
         expenseAmount: Number(expense.expenseAmount),
       });
       if (res.success === true) {
+        setLoading(false);
         router.back();
         await getExpenses();
+        await getEarnings();
       }
     } catch (error) {
+      setLoading(false);
       console.error(error);
     }
   };
@@ -57,8 +62,9 @@ const AddExpense = () => {
         />
         <div className="flex justify-center mt-4">
           <CustomButton
+            disabled={loading}
             onClick={handleAddExpense}
-            name={"Add Expense"}
+            name={loading ? "Adding Expense..." : "Add Expense"}
             className={
               "border h-[3rem] w-full rounded-md bg-slate-800 text-white"
             }

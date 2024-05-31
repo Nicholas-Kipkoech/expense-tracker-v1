@@ -3,7 +3,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { createContext, useEffect, useState } from "react";
 import { API_URL } from "../config/config";
-import { fetchExpenses } from "../services/apiServices";
+import { fetchEarning, fetchExpenses } from "../services/apiServices";
 
 export const ExpenseContext = createContext({});
 
@@ -14,6 +14,7 @@ export const ContextProvider = ({
 }) => {
   const [user, setUser] = useState<any>({});
   const [expenses, setExpenses] = useState([]);
+  const [earning, setEarning] = useState({});
 
   useEffect(() => {
     function getUser() {
@@ -30,10 +31,20 @@ export const ContextProvider = ({
   }
   useEffect(() => {
     getExpenses();
-  }, [user]);
+  }, []);
+
+  async function getEarnings() {
+    const res = await fetchEarning();
+    setEarning(res.earning);
+  }
+  useEffect(() => {
+    getEarnings();
+  }, []);
 
   return (
-    <ExpenseContext.Provider value={{ user, expenses, getExpenses }}>
+    <ExpenseContext.Provider
+      value={{ user, expenses, getExpenses, getEarnings, earning }}
+    >
       {children}
     </ExpenseContext.Provider>
   );
