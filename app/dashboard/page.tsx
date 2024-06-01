@@ -1,11 +1,12 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import CustomButton from "../helpers/CustomButton";
 import { useRouter } from "next/navigation";
 import { ExpenseContext } from "../context/context";
 import { MdDeleteOutline } from "react-icons/md";
 import { deleteExpense } from "../services/apiServices";
 import { IoMdAdd } from "react-icons/io";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 const ExpenseProgress = ({ totalExpenseAmount, earningAmount }: any) => {
   const percentage =
@@ -28,6 +29,8 @@ const ExpenseProgress = ({ totalExpenseAmount, earningAmount }: any) => {
 const Dashboard = () => {
   const router = useRouter();
 
+  const [hidden, setHidden] = useState(false);
+
   const { expenses, earning, getExpenses, user }: any =
     useContext(ExpenseContext);
 
@@ -45,22 +48,31 @@ const Dashboard = () => {
     }
   };
 
+  const myBalance = earning.earningAmount - totalExpenseAmount;
+
+  let maskedBalance = String(myBalance).replace(/./g, "*");
+
   return (
     <div>
       <div className="flex justify-between  bg-[#01204E] text-white items-center">
         <div className="flex flex-col shadow-2xl text-white p-1 border-1 ">
           <p>My Balance</p>
-
-          <p
-            className={`text-[1.5rem] ${
-              totalExpenseAmount > earning.earningAmount ? "text-red-600" : ""
-            } font-semibold`}
-          >
-            KSH{" "}
-            {Number(
-              earning.earningAmount - totalExpenseAmount
-            ).toLocaleString()}
-          </p>
+          <div className="flex gap-2 items-center">
+            <p
+              className={`text-[1.5rem] ${
+                totalExpenseAmount > earning.earningAmount ? "text-red-600" : ""
+              } font-semibold`}
+            >
+              {hidden
+                ? maskedBalance
+                : `KSH ${Number(myBalance).toLocaleString()}`}
+            </p>
+            <FaRegEyeSlash
+              size={20}
+              className="cursor-pointer"
+              onClick={() => setHidden(!hidden)}
+            />
+          </div>
         </div>
         <div
           className="flex flex-col items-center px-2 cursor-pointer "
