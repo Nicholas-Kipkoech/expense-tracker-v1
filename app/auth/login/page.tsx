@@ -39,8 +39,8 @@ const Login = () => {
     }
   };
   return (
-    <div className="flex justify-center flex-col items-center">
-      <Image alt="logo" src={Logo} height={"100"} width={"200"} />
+    <div className="flex  flex-col  items-center">
+      <Image alt="logo" src={Logo} height={"80"} width={"200"} />
       <p className="text-[1.8rem] font-bold justify-center flex">
         Expense Tracker
       </p>

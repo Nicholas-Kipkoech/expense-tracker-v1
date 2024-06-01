@@ -15,7 +15,6 @@ const Register = () => {
     email: "",
     firstName: "",
     lastName: "",
-    phoneNumber: "",
     password: "",
   });
 
@@ -31,7 +30,6 @@ const Register = () => {
       const res = await axios.post(`${API_URL}/api/user/register`, {
         firstName: userDetails.firstName,
         lastName: userDetails.lastName,
-        phoneNumber: userDetails.phoneNumber,
         email: userDetails.email.toLowerCase(),
         password: userDetails.password,
       });
@@ -68,14 +66,6 @@ const Register = () => {
           value={userDetails.lastName}
           onChange={(e) =>
             setUserDetails({ ...userDetails, lastName: e.target.value })
-          }
-        />
-        <CustomInput
-          name={"Phone Number"}
-          className={"h-[3rem] border w-full rounded-md"}
-          value={userDetails.phoneNumber}
-          onChange={(e) =>
-            setUserDetails({ ...userDetails, phoneNumber: e.target.value })
           }
         />
         <CustomInput

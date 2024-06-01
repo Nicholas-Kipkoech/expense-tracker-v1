@@ -44,7 +44,7 @@ const Dashboard = () => {
       }
     }
   };
-
+  console.log(earning);
   return (
     <div>
       <div className="flex justify-between  bg-[#01204E] text-white items-center">
@@ -62,8 +62,11 @@ const Dashboard = () => {
             ).toLocaleString()}
           </p>
         </div>
-        <div className="flex flex-col items-center px-2 cursor-pointer ">
-          <p>Add amount </p>
+        <div
+          className="flex flex-col items-center px-2 cursor-pointer "
+          onClick={() => router.push("/dashboard/earning")}
+        >
+          {earning.earningAmount > 0 ? <p>Edit amount </p> : <p>Add amount </p>}
           <IoMdAdd size={20} />
         </div>
       </div>
