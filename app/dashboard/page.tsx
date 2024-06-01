@@ -92,10 +92,10 @@ const Dashboard = () => {
           <IoMdAdd size={20} />
         </div>
       </div>
-      <div className="pt-[4rem]">
-        <p className="bg-[#01204E] text-[12px] p-2 text-white">
-          Welcome back! {user.firstName} {user.lastName}
-        </p>
+      <p className="bg-[#01204E] text-[12px] p-2 text-white pt-[4rem]">
+        Welcome back! {user.firstName} {user.lastName}
+      </p>
+      <div>
         <ExpenseProgress
           totalExpenseAmount={totalExpenseAmount}
           earningAmount={earning.earningAmount}
@@ -108,7 +108,7 @@ const Dashboard = () => {
           />
         </div>
 
-        <div className="border max-h-[280px] h-auto overflow-y-auto mt-5 ">
+        <div className="border max-h-[270px] h-auto overflow-y-auto mt-5 ">
           {expenses.map((expense: any, key: number) => (
             <div
               className="flex justify-between px-2 items-center border-2 h-[auto]"
