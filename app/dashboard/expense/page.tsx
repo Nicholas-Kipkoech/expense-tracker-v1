@@ -24,10 +24,10 @@ const AddExpense = () => {
         expenseAmount: Number(expense.expenseAmount),
       });
       if (res.success === true) {
-        setLoading(false);
-        router.back();
         await getExpenses();
         await getEarnings();
+        setLoading(false);
+        router.back();
       }
     } catch (error) {
       setLoading(false);
