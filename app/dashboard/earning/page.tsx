@@ -83,7 +83,7 @@ const AddEarningComponent = () => {
           <CustomButton
             disabled={loading}
             onClick={handleAddEarning}
-            name={loading ? "Adding Expense..." : "Add Expense"}
+            name={loading ? "Adding Amount..." : "Add Amount"}
             className={
               "border h-[3rem] w-full rounded-md bg-slate-800 text-white"
             }

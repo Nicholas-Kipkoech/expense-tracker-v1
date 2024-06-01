@@ -31,6 +31,7 @@ const Login = () => {
         password: password,
       });
       if (res.data.success === true) {
+        showToast("login success!");
         localStorage.setItem("access_token", res.data.accessToken);
         setLoading(false);
         router.push("/dashboard");

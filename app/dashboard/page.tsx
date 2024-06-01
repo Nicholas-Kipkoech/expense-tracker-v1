@@ -55,8 +55,8 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="flex justify-between  bg-[#01204E] text-white items-center">
-        <div className="flex flex-col shadow-2xl text-white p-1 border-1 ">
+      <div className="flex justify-between  bg-[#01204E] h-auto text-white items-center  fixed w-full">
+        <div className="flex flex-col  text-white p-1">
           <p>My Balance</p>
           <div className="flex gap-2 items-center">
             <p
@@ -83,6 +83,7 @@ const Dashboard = () => {
             )}
           </div>
         </div>
+
         <div
           className="flex flex-col items-center px-2 cursor-pointer "
           onClick={() => router.push("/dashboard/earning")}
@@ -91,45 +92,50 @@ const Dashboard = () => {
           <IoMdAdd size={20} />
         </div>
       </div>
-      <ExpenseProgress
-        totalExpenseAmount={totalExpenseAmount}
-        earningAmount={earning.earningAmount}
-      />
-      <div className="flex justify-end mr-2 mt-1">
-        <CustomButton
-          name={"Add Expense"}
-          onClick={() => router.push("/dashboard/expense")}
-          className="border bg-[#028391] text-white py-2 px-2 rounded-md"
+      <div className="overflow-y-auto">
+        <p className="bg-[#01204E] text-[12px] p-2 text-white">
+          Welcome back! {user.firstName} {user.lastName}
+        </p>
+        <ExpenseProgress
+          totalExpenseAmount={totalExpenseAmount}
+          earningAmount={earning.earningAmount}
         />
-      </div>
+        <div className="flex justify-end mr-2 mt-1">
+          <CustomButton
+            name={"Add Expense"}
+            onClick={() => router.push("/dashboard/expense")}
+            className="border bg-[#028391] text-white py-2 px-2 rounded-md"
+          />
+        </div>
 
-      <div className="border max-h-[250px] h-auto overflow-y-auto mt-5 ">
-        {expenses.map((expense: any, key: number) => (
-          <div
-            className="flex justify-between px-2 items-center border-2 h-[auto]"
-            key={key}
-          >
-            <div className="flex flex-col gap-2 my-2">
-              <p className="text-[14px] font-semibold truncate">
-                {String(expense.expenseName).toUpperCase()}
-              </p>
-              <p className="text-[12px] text-slate-700">
-                {new Date(expense.createdAt).toLocaleString()}
-              </p>
+        <div className="border max-h-[250px] h-auto overflow-y-auto mt-5 ">
+          {expenses.map((expense: any, key: number) => (
+            <div
+              className="flex justify-between px-2 items-center border-2 h-[auto]"
+              key={key}
+            >
+              <div className="flex flex-col gap-2 my-2">
+                <p className="text-[14px] font-semibold truncate">
+                  {String(expense.expenseName).toUpperCase()}
+                </p>
+                <p className="text-[12px] text-slate-700">
+                  {new Date(expense.createdAt).toLocaleString()}
+                </p>
+              </div>
+              <div className="flex items-center  gap-4">
+                <p className="text-[14px] font-bold">
+                  KSH {Number(expense.expenseAmount).toLocaleString()}
+                </p>
+                <MdDeleteOutline
+                  color="red"
+                  className="cursor-pointer"
+                  size={20}
+                  onClick={() => handleDeleteExpense(expense._id)}
+                />
+              </div>
             </div>
-            <div className="flex items-center  gap-4">
-              <p className="text-[14px] font-bold">
-                KSH {Number(expense.expenseAmount).toLocaleString()}
-              </p>
-              <MdDeleteOutline
-                color="red"
-                className="cursor-pointer"
-                size={20}
-                onClick={() => handleDeleteExpense(expense._id)}
-              />
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
