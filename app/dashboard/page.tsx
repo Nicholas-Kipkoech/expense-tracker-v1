@@ -44,7 +44,7 @@ const Dashboard = () => {
       }
     }
   };
-  console.log(earning);
+
   return (
     <div>
       <div className="flex justify-between  bg-[#01204E] text-white items-center">
