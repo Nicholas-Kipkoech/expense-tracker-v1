@@ -55,47 +55,55 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="flex justify-between  bg-[#01204E] h-auto text-white items-center  fixed w-full">
-        <div className="flex flex-col  text-white p-1">
-          <p>My Balance</p>
-          <div className="flex gap-2 items-center">
-            <p
-              className={`text-[1.5rem] ${
-                totalExpenseAmount > earning.earningAmount ? "text-red-600" : ""
-              } font-semibold`}
-            >
-              {hidden
-                ? maskedBalance
-                : `KSH ${Number(myBalance).toLocaleString()}`}
-            </p>
-            {hidden ? (
-              <LiaEyeSolid
-                size={20}
-                className="cursor-pointer"
-                onClick={() => setHidden(!hidden)}
-              />
+      <div className="fixed w-full  bg-[#01204E] ">
+        <div className="flex justify-between h-auto text-white items-center   w-full">
+          <div className="flex flex-col  text-white p-1">
+            <p>My Balance</p>
+            <div className="flex gap-2 items-center">
+              <p
+                className={`text-[1.5rem] ${
+                  totalExpenseAmount > earning.earningAmount
+                    ? "text-red-600"
+                    : ""
+                } font-semibold`}
+              >
+                {hidden
+                  ? maskedBalance
+                  : `KSH ${Number(myBalance).toLocaleString()}`}
+              </p>
+              {hidden ? (
+                <LiaEyeSolid
+                  size={20}
+                  className="cursor-pointer"
+                  onClick={() => setHidden(!hidden)}
+                />
+              ) : (
+                <FaRegEyeSlash
+                  size={20}
+                  className="cursor-pointer"
+                  onClick={() => setHidden(!hidden)}
+                />
+              )}
+            </div>
+          </div>
+
+          <div
+            className="flex flex-col items-center px-2 cursor-pointer "
+            onClick={() => router.push("/dashboard/earning")}
+          >
+            {earning.earningAmount > 0 ? (
+              <p>Edit amount </p>
             ) : (
-              <FaRegEyeSlash
-                size={20}
-                className="cursor-pointer"
-                onClick={() => setHidden(!hidden)}
-              />
+              <p>Add amount </p>
             )}
+            <IoMdAdd size={20} />
           </div>
         </div>
-
-        <div
-          className="flex flex-col items-center px-2 cursor-pointer "
-          onClick={() => router.push("/dashboard/earning")}
-        >
-          {earning.earningAmount > 0 ? <p>Edit amount </p> : <p>Add amount </p>}
-          <IoMdAdd size={20} />
-        </div>
+        <p className="bg-[#01204E] text-[12px] p-2 text-white">
+          Welcome back! {user.firstName} {user.lastName}
+        </p>
       </div>
-      <p className="bg-[#01204E] text-[12px] p-2 text-white pt-[4rem]">
-        Welcome back! {user.firstName} {user.lastName}
-      </p>
-      <div>
+      <div className="pt-[100px]">
         <ExpenseProgress
           totalExpenseAmount={totalExpenseAmount}
           earningAmount={earning.earningAmount}
