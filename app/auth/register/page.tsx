@@ -9,6 +9,7 @@ import { config } from "dotenv";
 import { API_URL } from "@/app/config/config";
 import Image from "next/image";
 import Logo from "../../assets/Logo.png";
+import { useCustomToast } from "@/app/config/useToast";
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState({
@@ -20,12 +21,17 @@ const Register = () => {
 
   const [loading, setLoading] = useState(false);
 
+  const showToast = useCustomToast();
+
   const router = useRouter();
   /**
    * This is function for triggering login. Once the login is success the user is redirected to dashboard
    */
   const handleRegister = async () => {
     try {
+      if (userDetails.password.length < 4) {
+        showToast("Password must be 4 digits long", "error");
+      }
       setLoading(true);
       const res = await axios.post(`${API_URL}/api/user/register`, {
         firstName: userDetails.firstName,
@@ -34,11 +40,13 @@ const Register = () => {
         password: userDetails.password,
       });
       if (res.data.success === true) {
+        showToast("Registration successfull");
         setLoading(false);
         router.push("/auth/login");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      showToast(error.response.data.message, "error");
       setLoading(false);
     }
   };

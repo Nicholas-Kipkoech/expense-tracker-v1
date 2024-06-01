@@ -1,4 +1,5 @@
 "use client";
+import { useCustomToast } from "@/app/config/useToast";
 import { ExpenseContext } from "@/app/context/context";
 import CustomButton from "@/app/helpers/CustomButton";
 import CustomInput from "@/app/helpers/CustomInput";
@@ -15,6 +16,7 @@ const AddExpense = () => {
     expenseAmount: "",
   });
   const [loading, setLoading] = useState(false);
+  const showToast = useCustomToast();
 
   const handleAddExpense = async () => {
     try {
@@ -24,14 +26,16 @@ const AddExpense = () => {
         expenseAmount: Number(expense.expenseAmount),
       });
       if (res.success === true) {
+        showToast("Expense added successfully");
         await getExpenses();
         await getEarnings();
         setLoading(false);
         router.back();
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       console.error(error);
+      showToast(error.response.data.error, "error");
     }
   };
 
