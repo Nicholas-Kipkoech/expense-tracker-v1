@@ -9,6 +9,7 @@ import { config } from "dotenv";
 import { API_URL } from "@/app/config/config";
 import Image from "next/image";
 import Logo from "../../assets/Logo.png";
+import { useCustomToast } from "@/app/config/useToast";
 
 config();
 
@@ -17,6 +18,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const showToast = useCustomToast();
   const router = useRouter();
   /**
    * This is function for triggering login. Once the login is success the user is redirected to dashboard
@@ -33,8 +35,9 @@ const Login = () => {
         setLoading(false);
         router.push("/dashboard");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      showToast(error.response.data.error, "error");
       setLoading(false);
     }
   };

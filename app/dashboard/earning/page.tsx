@@ -1,4 +1,5 @@
 "use client";
+import { useCustomToast } from "@/app/config/useToast";
 import { ExpenseContext } from "@/app/context/context";
 import CustomButton from "@/app/helpers/CustomButton";
 import CustomInput from "@/app/helpers/CustomInput";
@@ -17,6 +18,7 @@ const AddEarningComponent = () => {
 
   const [earning, setEarning] = useState({
     newAmount: 0,
+    additional: 0,
   });
   useEffect(() => {
     if (_earning.earningAmount) {
@@ -27,20 +29,23 @@ const AddEarningComponent = () => {
 
   const [loading, setLoading] = useState(false);
 
+  const showToast = useCustomToast();
   const handleAddEarning = async () => {
     try {
       setLoading(true);
       const res = await addEarning({
-        newAmount: Number(earning.newAmount),
+        additionalAmount: Number(earning.additional),
       });
       if (res.success === true) {
+        showToast("Amount added successfully");
         setLoading(false);
         router.back();
         await getExpenses();
         await getEarnings();
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
+      showToast(error.response.data.error, "error");
       console.error(error);
     }
   };
@@ -57,10 +62,20 @@ const AddEarningComponent = () => {
 
       <div className="border shadow-2xl p-4 w-full mt-2 rounded-md">
         <CustomInput
-          name="Principal Amount"
+          name="Current Amount e.g Salary,Savings"
+          disabled
           value={earning.newAmount}
           onChange={(e) =>
             setEarning({ ...earning, newAmount: e.target.value })
+          }
+          className="border h-[3rem] rounded-md "
+        />
+        <CustomInput
+          name="Additional Amount"
+          placeholder={"500,600 etc"}
+          value={earning.additional}
+          onChange={(e) =>
+            setEarning({ ...earning, additional: e.target.value })
           }
           className="border h-[3rem] rounded-md "
         />

@@ -7,6 +7,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { deleteExpense } from "../services/apiServices";
 import { IoMdAdd } from "react-icons/io";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { LiaEyeSolid } from "react-icons/lia";
 
 const ExpenseProgress = ({ totalExpenseAmount, earningAmount }: any) => {
   const percentage =
@@ -67,11 +68,19 @@ const Dashboard = () => {
                 ? maskedBalance
                 : `KSH ${Number(myBalance).toLocaleString()}`}
             </p>
-            <FaRegEyeSlash
-              size={20}
-              className="cursor-pointer"
-              onClick={() => setHidden(!hidden)}
-            />
+            {hidden ? (
+              <LiaEyeSolid
+                size={20}
+                className="cursor-pointer"
+                onClick={() => setHidden(!hidden)}
+              />
+            ) : (
+              <FaRegEyeSlash
+                size={20}
+                className="cursor-pointer"
+                onClick={() => setHidden(!hidden)}
+              />
+            )}
           </div>
         </div>
         <div
