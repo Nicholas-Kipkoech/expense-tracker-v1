@@ -14,7 +14,7 @@ const ExpenseProgress = ({ totalExpenseAmount, earningAmount }: any) => {
       : 0;
 
   return (
-    <div className="h-[3rem] border-2 bg-gray-400 mt-2 mx-1 rounded-full overflow-hidden">
+    <div className="h-[2rem] border-2 bg-gray-400 mt-2 mx-1 rounded-full overflow-hidden">
       <div
         className={`${
           totalExpenseAmount > earningAmount ? "bg-red-700" : "bg-slate-800"
@@ -74,15 +74,15 @@ const Dashboard = () => {
         totalExpenseAmount={totalExpenseAmount}
         earningAmount={earning.earningAmount}
       />
-      <div className="flex justify-end mr-2 mt-2">
+      <div className="flex justify-end mr-2 mt-1">
         <CustomButton
           name={"Add Expense"}
           onClick={() => router.push("/dashboard/expense")}
-          className="border bg-[#028391] text-white p-2 rounded-md"
+          className="border bg-[#028391] text-white py-2 px-2 rounded-md"
         />
       </div>
 
-      <div className="border max-h-[350px] h-auto overflow-y-auto mt-5 ">
+      <div className="border max-h-[250px] h-auto overflow-y-auto mt-5 ">
         {expenses.map((expense: any, key: number) => (
           <div
             className="flex justify-between px-2 items-center border-2 h-[auto]"
