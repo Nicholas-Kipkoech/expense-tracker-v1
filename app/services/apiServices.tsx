@@ -13,3 +13,8 @@ export const fetchEarning = async () => {
   const res = await PrivateAxiosUtility.get(`/api/earnings/fetch`);
   return res.data;
 };
+
+export const deleteExpense = async (expenseId: string) => {
+  const res = await PrivateAxiosUtility.delete(`/api/expenses/${expenseId}`);
+  return res.data;
+};

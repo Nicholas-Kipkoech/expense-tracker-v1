@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { config } from "dotenv";
 import { API_URL } from "@/app/config/config";
+import Image from "next/image";
+import Logo from "../../assets/Logo.png";
 
 config();
 
@@ -37,14 +39,15 @@ const Login = () => {
     }
   };
   return (
-    <div className="w-full m-2">
+    <div className="flex justify-center flex-col items-center">
+      <Image alt="logo" src={Logo} height={"100"} width={"200"} />
       <p className="text-[1.8rem] font-bold justify-center flex">
         Expense Tracker
       </p>
       <p className="text-[1.3rem] font-semibold flex justify-center">
         Login to your account
       </p>
-      <div className="border p-8 shadow-2xl rounded-md">
+      <div className="border p-4 w-full mx-10 shadow-2xl rounded-md">
         <CustomInput
           name={"Email"}
           className={"h-[3rem] border w-full rounded-md"}

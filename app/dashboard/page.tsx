@@ -3,6 +3,9 @@ import React, { useContext } from "react";
 import CustomButton from "../helpers/CustomButton";
 import { useRouter } from "next/navigation";
 import { ExpenseContext } from "../context/context";
+import { MdDeleteOutline } from "react-icons/md";
+import { deleteExpense } from "../services/apiServices";
+import { IoMdAdd } from "react-icons/io";
 
 const ExpenseProgress = ({ totalExpenseAmount, earningAmount }: any) => {
   const percentage =
@@ -25,25 +28,44 @@ const ExpenseProgress = ({ totalExpenseAmount, earningAmount }: any) => {
 const Dashboard = () => {
   const router = useRouter();
 
-  const { expenses, earning }: any = useContext(ExpenseContext);
+  const { expenses, earning, getExpenses, user }: any =
+    useContext(ExpenseContext);
 
   const totalExpenseAmount = expenses.reduce(
     (total: number, expense: any) => total + Number(expense.expenseAmount),
     0
   );
 
+  const handleDeleteExpense = async (expenseId: string) => {
+    if (expenseId) {
+      const res = await deleteExpense(expenseId);
+      if (res.success) {
+        await getExpenses();
+      }
+    }
+  };
+
   return (
     <div>
-      <div className="flex flex-col bg-[#01204E] shadow-2xl text-white p-1 border-1 w-full">
-        <p>Principal Amount</p>
+      <div className="flex justify-between  bg-[#01204E] text-white items-center">
+        <div className="flex flex-col shadow-2xl text-white p-1 border-1 ">
+          <p>My Balance</p>
 
-        <p
-          className={`text-[2rem] ${
-            totalExpenseAmount > earning.earningAmount ? "text-red-600" : ""
-          } font-semibold`}
-        >
-          KSH {earning.earningAmount - totalExpenseAmount}
-        </p>
+          <p
+            className={`text-[1.5rem] ${
+              totalExpenseAmount > earning.earningAmount ? "text-red-600" : ""
+            } font-semibold`}
+          >
+            KSH{" "}
+            {Number(
+              earning.earningAmount - totalExpenseAmount
+            ).toLocaleString()}
+          </p>
+        </div>
+        <div className="flex flex-col items-center px-2 cursor-pointer ">
+          <p>Add amount </p>
+          <IoMdAdd size={20} />
+        </div>
       </div>
       <ExpenseProgress
         totalExpenseAmount={totalExpenseAmount}
@@ -60,16 +82,28 @@ const Dashboard = () => {
       <div className="border max-h-[350px] h-auto overflow-y-auto mt-5 ">
         {expenses.map((expense: any, key: number) => (
           <div
-            className="flex justify-between px-2 items-center border-2 h-[3rem]"
+            className="flex justify-between px-2 items-center border-2 h-[auto]"
             key={key}
           >
-            <p className="text-[14px]">{expense.expenseName}</p>
-            <p className="text-[12px]">
-              KSH {expense.expenseAmount?.toLocaleString()}
-            </p>
-            <p className="text-[12px]">
-              {new Date(expense.createdAt).toLocaleString()}
-            </p>
+            <div className="flex flex-col gap-2 my-2">
+              <p className="text-[14px] font-semibold truncate">
+                {String(expense.expenseName).toUpperCase()}
+              </p>
+              <p className="text-[12px] text-slate-700">
+                {new Date(expense.createdAt).toLocaleString()}
+              </p>
+            </div>
+            <div className="flex items-center  gap-4">
+              <p className="text-[14px] font-bold">
+                KSH {Number(expense.expenseAmount).toLocaleString()}
+              </p>
+              <MdDeleteOutline
+                color="red"
+                className="cursor-pointer"
+                size={20}
+                onClick={() => handleDeleteExpense(expense._id)}
+              />
+            </div>
           </div>
         ))}
       </div>
