@@ -108,7 +108,7 @@ const Dashboard = () => {
           totalExpenseAmount={totalExpenseAmount}
           earningAmount={earning.earningAmount}
         />
-        <div className="flex justify-end mr-2 mt-1">
+        <div className="flex justify-end mr-2">
           <CustomButton
             name={"Add Expense"}
             onClick={() => router.push("/dashboard/expense")}
