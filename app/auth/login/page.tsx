@@ -43,8 +43,8 @@ const Login = () => {
     }
   };
   return (
-    <div className="flex  flex-col  items-center">
-      <Image alt="logo" src={Logo} height={"80"} width={"200"} />
+    <div className="flex  flex-col items-center h-screen mt-[10rem]">
+      <Image alt="logo" src={Logo} height={"80"} width={"100"} />
       <p className="text-[1.8rem] font-bold justify-center flex">
         Expense Tracker
       </p>
