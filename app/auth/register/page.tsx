@@ -44,17 +44,17 @@ const Register = () => {
   };
   return (
     <div className="flex justify-center flex-col items-center">
-      <Image alt="logo" src={Logo} height={"80"} width={"200"} />
+      <Image alt="logo" src={Logo} height={"80"} width={"100"} />
       <p className="text-[1.4rem] font-bold justify-center flex">
         Expense Tracker
       </p>
       <p className="text-[1rem] font-semibold flex justify-center">
         Create your account
       </p>
-      <div className="border px-4 w-full mx-10 shadow-2xl rounded-md">
+      <div className="border p-4 w-full mx-10 shadow-2xl rounded-md">
         <CustomInput
           name={"First Name"}
-          className={"h-[3rem] border w-full rounded-md"}
+          className={"h-[2.5rem] border w-full rounded-md"}
           value={userDetails.firstName}
           onChange={(e) =>
             setUserDetails({ ...userDetails, firstName: e.target.value })
@@ -62,7 +62,7 @@ const Register = () => {
         />
         <CustomInput
           name={"Last Name"}
-          className={"h-[3rem] border w-full rounded-md"}
+          className={"h-[2.5rem] border w-full rounded-md"}
           value={userDetails.lastName}
           onChange={(e) =>
             setUserDetails({ ...userDetails, lastName: e.target.value })
@@ -70,7 +70,7 @@ const Register = () => {
         />
         <CustomInput
           name={"Email"}
-          className={"h-[3rem] border w-full rounded-md"}
+          className={"h-[2.5rem] border w-full rounded-md"}
           value={userDetails.email}
           onChange={(e) =>
             setUserDetails({ ...userDetails, email: e.target.value })
@@ -79,7 +79,8 @@ const Register = () => {
 
         <CustomInput
           name={"Password"}
-          className={"h-[3rem] border w-full rounded-md"}
+          type="password"
+          className={"h-[2.5rem] border w-full rounded-md"}
           value={userDetails.password}
           onChange={(e) =>
             setUserDetails({ ...userDetails, password: e.target.value })

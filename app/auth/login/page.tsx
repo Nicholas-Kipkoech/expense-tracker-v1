@@ -50,13 +50,14 @@ const Login = () => {
       <div className="border p-4 w-full mx-10 shadow-2xl rounded-md">
         <CustomInput
           name={"Email"}
-          className={"h-[3rem] border w-full rounded-md"}
+          className={"h-[2.5rem] border w-full rounded-md"}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <CustomInput
           name={"Password"}
-          className={"h-[3rem] border w-full rounded-md"}
+          type="password"
+          className={"h-[2.5rem] border w-full rounded-md"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
