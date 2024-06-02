@@ -125,7 +125,7 @@ const Dashboard = () => {
                 </div>
                 <div className="flex flex-col">
                   <p className="text-[14px] font-semibold truncate">
-                    {String(expense.expenseName).toUpperCase()}
+                    {expense.expenseName}
                   </p>
                   <p className="text-[12px] text-slate-700">
                     {expense.expenseType}
