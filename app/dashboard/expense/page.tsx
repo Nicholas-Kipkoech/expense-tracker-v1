@@ -94,7 +94,11 @@ const AddExpense = () => {
         />
         <div className="flex justify-center mt-4">
           <CustomButton
-            disabled={loading || Number(expense.expenseAmount) < 1}
+            disabled={
+              loading ||
+              Number(expense.expenseAmount) < 1 ||
+              expense.expenseName !== ""
+            }
             onClick={handleAddExpense}
             name={loading ? "Adding Expense..." : "Add Expense"}
             className={
