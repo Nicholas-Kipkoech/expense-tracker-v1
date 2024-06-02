@@ -23,7 +23,6 @@ const AddExpense = () => {
   const expenseTypes = [
     "Food & Drinks",
     "Shopping",
-    "Shoes",
     "Family & Friends",
     "Enjoyments",
   ];
@@ -99,7 +98,7 @@ const AddExpense = () => {
             onClick={handleAddExpense}
             name={loading ? "Adding Expense..." : "Add Expense"}
             className={
-              "border h-[3rem] w-full rounded-md bg-slate-800 text-white"
+              "border h-[3rem] w-full rounded-md bg-[#42224A] text-white"
             }
           />
         </div>
