@@ -44,7 +44,7 @@ const Dashboard = () => {
   );
 
   const myBalance = earning.earningAmount - totalExpenseAmount;
-  let maskedBalance = String(myBalance).replace(/./g, "*");
+  let maskedBalance = `KSH ${String(myBalance).replace(/./g, "*")}`;
 
   const showToast = useCustomToast();
 
@@ -67,7 +67,7 @@ const Dashboard = () => {
         </p>
       </div>
 
-      <div className="border p-3 rounded-[30px] flex justify-between items-center text-white shadow-2xl bg-[#42224A]">
+      <div className="border p-3 rounded-[30px] flex justify-between items-center text-white shadow-2xl color">
         <div>
           <p className="text-[1.5rem]">My Balance</p>
           <div className="flex gap-2 items-center">
@@ -106,7 +106,7 @@ const Dashboard = () => {
       <div className="flex justify-end mt-2">
         <CustomButton
           onClick={() => router.push("/dashboard/expense")}
-          className="bg-[#42224A] h-[2rem] text-white px-2 rounded-md"
+          className="color h-[2rem] text-white px-2 rounded-md"
           name="+ Add expense"
         />
       </div>
@@ -120,7 +120,7 @@ const Dashboard = () => {
           return (
             <div className="flex justify-between mx-2 items-center" key={key}>
               <div className="flex items-center gap-4">
-                <div className="border rounded-[50px] h-[3rem] w-[3rem] flex items-center justify-center bg-[#42224A] text-white">
+                <div className="border rounded-[50px] h-[3rem] w-[3rem] flex items-center justify-center color text-white">
                   {matchedIcon ? matchedIcon.icon : <GiShoppingCart />}
                 </div>
                 <div className="flex flex-col">

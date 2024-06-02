@@ -101,9 +101,7 @@ const AddExpense = () => {
             }
             onClick={handleAddExpense}
             name={loading ? "Adding Expense..." : "Add Expense"}
-            className={
-              "border h-[3rem] w-full rounded-md bg-[#42224A] text-white"
-            }
+            className={"border h-[3rem] w-full rounded-md color text-white"}
           />
         </div>
       </div>

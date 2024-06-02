@@ -84,9 +84,7 @@ const AddEarningComponent = () => {
             disabled={loading}
             onClick={handleAddEarning}
             name={loading ? "Adding Amount..." : "Add Amount"}
-            className={
-              "border h-[3rem] w-full rounded-md bg-[#42224A] text-white"
-            }
+            className={"border h-[3rem] w-full rounded-md color text-white"}
           />
         </div>
       </div>
