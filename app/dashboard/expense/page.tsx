@@ -3,6 +3,7 @@ import { useCustomToast } from "@/app/config/useToast";
 import { ExpenseContext } from "@/app/context/context";
 import CustomButton from "@/app/helpers/CustomButton";
 import CustomInput from "@/app/helpers/CustomInput";
+import CustomSelect from "@/app/helpers/CustomSelect";
 import { addExpense } from "@/app/services/apiServices";
 import { useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
@@ -14,9 +15,25 @@ const AddExpense = () => {
   const [expense, setExpense] = useState({
     expenseName: "",
     expenseAmount: "",
+    expenseType: "",
   });
   const [loading, setLoading] = useState(false);
   const showToast = useCustomToast();
+
+  const expenseTypes = [
+    "Food & Drinks",
+    "Shopping",
+    "Shoes",
+    "Family & Friends",
+    "Enjoyments",
+  ];
+
+  const expenseTypesOptions = expenseTypes.map((expense) => {
+    return {
+      label: expense,
+      value: expense,
+    };
+  });
 
   const handleAddExpense = async () => {
     try {
@@ -24,6 +41,7 @@ const AddExpense = () => {
       const res = await addExpense({
         expenseName: expense.expenseName,
         expenseAmount: Number(expense.expenseAmount),
+        expenseType: expense.expenseType,
       });
       if (res.success === true) {
         showToast("Expense added successfully");
@@ -56,6 +74,17 @@ const AddExpense = () => {
           }
           className="border h-[3rem] rounded-md "
         />
+
+        <CustomSelect
+          name="Expense Type"
+          defaultValue={expenseTypesOptions[0]}
+          options={expenseTypesOptions}
+          className=""
+          onChange={(value: any) =>
+            setExpense({ ...expense, expenseType: value.value })
+          }
+        />
+
         <CustomInput
           name="Expense Amount"
           value={expense.expenseAmount}
