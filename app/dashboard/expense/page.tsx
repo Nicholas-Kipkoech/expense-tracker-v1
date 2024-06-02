@@ -24,7 +24,7 @@ const AddExpense = () => {
     "Food & Drinks",
     "Shopping",
     "Family & Friends",
-    "Enjoyments",
+    "Miscellaneous",
   ];
 
   const expenseTypesOptions = expenseTypes.map((expense) => {

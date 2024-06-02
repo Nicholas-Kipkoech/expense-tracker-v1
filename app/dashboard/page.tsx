@@ -23,7 +23,7 @@ const iconsMap = [
   },
   {
     icon: <BiDrink />,
-    name: "Enjoyments",
+    name: "Miscellaneous",
   },
   {
     icon: <IoFastFood />,
