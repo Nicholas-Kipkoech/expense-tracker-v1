@@ -97,7 +97,7 @@ const AddExpense = () => {
             disabled={
               loading ||
               Number(expense.expenseAmount) < 1 ||
-              expense.expenseName !== ""
+              expense.expenseName === ""
             }
             onClick={handleAddExpense}
             name={loading ? "Adding Expense..." : "Add Expense"}
