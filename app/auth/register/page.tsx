@@ -51,7 +51,7 @@ const Register = () => {
     }
   };
   return (
-    <div className="flex justify-center flex-col items-center">
+    <div className="flex justify-center h-screen flex-col items-center">
       <Image alt="logo" src={Logo} height={"80"} width={"100"} />
       <p className="text-[1.4rem] font-bold justify-center flex">
         Expense Tracker
@@ -59,10 +59,10 @@ const Register = () => {
       <p className="text-[1rem] font-semibold flex justify-center">
         Create your account
       </p>
-      <div className="border p-4 w-full mx-10 shadow-2xl rounded-md">
+      <div className=" p-4 w-full mx-10">
         <CustomInput
           name={"First Name"}
-          className={"h-[2.5rem] border w-full rounded-md"}
+          className={"h-[2.8rem] border w-full rounded-md"}
           value={userDetails.firstName}
           onChange={(e) =>
             setUserDetails({ ...userDetails, firstName: e.target.value })
@@ -70,7 +70,7 @@ const Register = () => {
         />
         <CustomInput
           name={"Last Name"}
-          className={"h-[2.5rem] border w-full rounded-md"}
+          className={"h-[2.8rem] border w-full rounded-md"}
           value={userDetails.lastName}
           onChange={(e) =>
             setUserDetails({ ...userDetails, lastName: e.target.value })
@@ -78,7 +78,7 @@ const Register = () => {
         />
         <CustomInput
           name={"Email"}
-          className={"h-[2.5rem] border w-full rounded-md"}
+          className={"h-[2.8rem] border w-full rounded-md"}
           value={userDetails.email}
           onChange={(e) =>
             setUserDetails({ ...userDetails, email: e.target.value })
@@ -88,7 +88,7 @@ const Register = () => {
         <CustomInput
           name={"Password"}
           type="password"
-          className={"h-[2.5rem] border w-full rounded-md"}
+          className={"h-[2.8rem] border w-full rounded-md"}
           value={userDetails.password}
           onChange={(e) =>
             setUserDetails({ ...userDetails, password: e.target.value })
@@ -102,7 +102,10 @@ const Register = () => {
 
         <div className="flex justify-center gap-1 mt-1 items-center">
           <p>Already have an account?</p>
-          <a href="/auth/login" className="text-blue-800">
+          <a
+            onClick={() => router.push("/auth/login")}
+            className="text-blue-800"
+          >
             Login
           </a>
         </div>

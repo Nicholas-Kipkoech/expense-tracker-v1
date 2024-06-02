@@ -59,7 +59,7 @@ const Dashboard = () => {
         <div className="flex justify-between h-auto text-white items-center   w-full">
           <div className="flex flex-col  text-white p-1">
             <p>My Balance</p>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-3 items-center">
               <p
                 className={`text-[1.5rem] ${
                   totalExpenseAmount > earning.earningAmount
@@ -116,7 +116,7 @@ const Dashboard = () => {
           />
         </div>
 
-        <div className="border max-h-[270px] h-auto overflow-y-auto mt-5 ">
+        <div className="border h-screen overflow-y-auto mt-5 ">
           {expenses.map((expense: any, key: number) => (
             <div
               className="flex justify-between px-2 items-center border-2 h-[auto]"

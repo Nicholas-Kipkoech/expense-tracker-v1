@@ -60,7 +60,7 @@ const AddEarningComponent = () => {
         <p></p>
       </div>
 
-      <div className="border shadow-2xl p-4 w-full mt-2 rounded-md">
+      <div className="p-4 w-full mt-2">
         <CustomInput
           name="Current Amount e.g Salary,Savings"
           disabled

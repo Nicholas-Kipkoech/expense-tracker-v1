@@ -40,14 +40,14 @@ const AddExpense = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center h-full m-2 items-center">
+    <div className="flex flex-col justify-center  mt-3 items-center">
       <div className="flex justify-between items-center w-full">
         <IoIosArrowRoundBack size={40} onClick={() => router.back()} />
         <p className="text-[1rem] font-semibold">Add your today expense!</p>
         <p></p>
       </div>
 
-      <div className="border shadow-2xl p-4 w-full mt-2 rounded-md">
+      <div className="p-4 w-full mt-2 ">
         <CustomInput
           name="Expense Name"
           value={expense.expenseName}

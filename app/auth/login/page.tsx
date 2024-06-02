@@ -43,7 +43,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="flex  flex-col items-center h-screen mt-[10rem]">
+    <div className="flex  flex-col items-center  h-screen mt-[10rem]">
       <Image alt="logo" src={Logo} height={"80"} width={"100"} />
       <p className="text-[1.8rem] font-bold justify-center flex">
         Expense Tracker
@@ -51,17 +51,17 @@ const Login = () => {
       <p className="text-[1.3rem] font-semibold flex justify-center">
         Login to your account
       </p>
-      <div className="border p-4 w-full mx-10 shadow-2xl rounded-md">
+      <div className="p-2 w-[90vw] px-2">
         <CustomInput
           name={"Email"}
-          className={"h-[2.5rem] border w-full rounded-md"}
+          className={"h-[2.8rem] border w-full rounded-md"}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <CustomInput
           name={"Password"}
           type="password"
-          className={"h-[2.5rem] border w-full rounded-md"}
+          className={"h-[2.8rem] border w-full rounded-md"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -73,7 +73,10 @@ const Login = () => {
 
         <div className="flex justify-center gap-1 mt-2 items-center">
           <p>Don&apos;t have an account?</p>
-          <a href="/auth/register" className="text-blue-800">
+          <a
+            onClick={() => router.push("/auth/register")}
+            className="text-blue-800"
+          >
             Register
           </a>
         </div>
