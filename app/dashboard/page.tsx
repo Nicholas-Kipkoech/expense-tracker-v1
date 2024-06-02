@@ -128,7 +128,7 @@ const Dashboard = () => {
                     {expense.expenseName}
                   </p>
                   <p className="text-[12px] text-slate-700">
-                    {expense.expenseType}
+                    {new Date(expense.createdAt).toLocaleString()}
                   </p>
                 </div>
               </div>

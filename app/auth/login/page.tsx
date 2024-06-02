@@ -10,6 +10,7 @@ import { API_URL } from "@/app/config/config";
 import Image from "next/image";
 import Logo from "../../assets/Logo.png";
 import { useCustomToast } from "@/app/config/useToast";
+import { FaEye } from "react-icons/fa";
 
 config();
 
@@ -17,6 +18,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const showToast = useCustomToast();
   const router = useRouter();
@@ -58,13 +60,21 @@ const Login = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+
         <CustomInput
           name={"Password"}
-          type="password"
+          type={showPassword ? "text" : "password"}
           className={"h-[2.8rem] border w-full rounded-md"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <input
+          type="checkbox"
+          className="mt-2 mx-2"
+          onChange={() => setShowPassword(!showPassword)}
+        />
+        <label>Show password</label>
+
         <CustomButton
           name={loading ? "Loggin in.." : "Login"}
           onClick={handleLogin}
