@@ -68,7 +68,7 @@ const Login = () => {
         <CustomButton
           name={loading ? "Loggin in.." : "Login"}
           onClick={handleLogin}
-          className="w-full border h-[3rem] mt-5 rounded-md bg-slate-800 text-white"
+          className="w-full border h-[3rem] mt-5 rounded-md color text-white"
         />
 
         <div className="flex justify-center gap-1 mt-2 items-center">
