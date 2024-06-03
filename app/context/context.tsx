@@ -7,14 +7,26 @@ import { fetchEarning, fetchExpenses } from "../services/apiServices";
 
 export const ExpenseContext = createContext({});
 
+interface IExpense {
+  createdAt: string;
+  createdBy: string;
+  expenseAmount: string;
+  expenseName: string;
+  expenseType: string;
+  updatedAt: string;
+  __v: number;
+  _id: string;
+}
+
 export const ContextProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
   const [user, setUser] = useState<any>({});
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState<IExpense[]>([]);
   const [earning, setEarning] = useState({});
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     function getUser() {
@@ -43,7 +55,15 @@ export const ContextProvider = ({
 
   return (
     <ExpenseContext.Provider
-      value={{ user, expenses, getExpenses, getEarnings, earning }}
+      value={{
+        user,
+        expenses,
+        getExpenses,
+        getEarnings,
+        earning,
+        hidden,
+        setHidden,
+      }}
     >
       {children}
     </ExpenseContext.Provider>

@@ -32,11 +32,9 @@ const iconsMap = [
 ];
 
 const Dashboard = () => {
-  const { expenses, earning, getExpenses, user }: any =
+  const { expenses, earning, getExpenses, user, hidden, setHidden }: any =
     useContext(ExpenseContext);
   const router = useRouter();
-
-  const [hidden, setHidden] = useState(false);
 
   const totalExpenseAmount = expenses.reduce(
     (total: number, expense: any) => total + Number(expense.expenseAmount),
